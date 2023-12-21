@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3b84h6bnpnnt"]
+
+[ext_resource type="Script" path="res://tablero.gd" id="1_juoqw"]
+[ext_resource type="PackedScene" uid="uid://drus8v84sdn81" path="res://carta.tscn" id="1_q72mm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_juoqw")
+carta_scene = ExtResource("1_q72mm")
