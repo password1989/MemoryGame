@@ -98,13 +98,13 @@ _data = {
 script = ExtResource("1_0a455")
 
 [node name="Frontal" type="Sprite2D" parent="."]
+position = Vector2(126, 126)
 texture = ExtResource("1_7iso1")
-centered = false
 
 [node name="DorsoGodot" type="Sprite2D" parent="."]
+position = Vector2(126, 126)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_nbmul")
-centered = false
 
 [node name="Animacion" type="AnimationPlayer" parent="."]
 libraries = {

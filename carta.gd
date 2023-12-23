@@ -18,7 +18,7 @@ func _process(delta):
 	boca_abajo = _comprobar_estado()
 
 func _on_button_girar_pressed():
-	print("¡Boton girar presionado!")
+	# TRAZA print("¡Boton girar presionado!")
 	if boca_abajo:
 		anim_girar.play("Descubrir")
 	else:
@@ -26,7 +26,7 @@ func _on_button_girar_pressed():
 
 func _comprobar_estado() -> bool:
 	if frontal.scale.x == 1 and frontal.scale.y == 1:
-		print("La carta está boca arriba")
+		# TRAZA print("La carta está boca arriba")
 		return false
 	else:
 		return true
