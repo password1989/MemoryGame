@@ -2,7 +2,7 @@ extends Control
 
 @export var carta_scene: PackedScene
 const NUM_FILAS = 2
-const NUM_COLUMNAS = 2
+const NUM_COLUMNAS = 5
 const SEPARACION = 10
 
 # Called when the node enters the scene tree for the first time.
@@ -27,15 +27,19 @@ func _generar_tablero():
 func _asignar_imagenes():
 	# Lista de rutas
 	var rutas_texturas = [
-		"res://Images/2.png", 				# 0
-		"res://Images/interrogacion.png", 	# 1
-		"res://Images/+.png", 				# 2
-		"res://Images/pelota.png", 			# 3
-		"res://Images/x.png" 				# 4
+		"res://Images/A-Mayus.png",
+		"res://Images/a-Minus.png",
+		"res://Images/E-Mayus.png",
+		"res://Images/e-Minus.png",
+		"res://Images/I-Mayus.png",
+		"res://Images/i-Minus.png",
+		"res://Images/O-Mayus.png",
+		"res://Images/o-Minus.png",
+		"res://Images/U-Mayus.png",
+		"res://Images/u-Minus.png"
 		# Agrega más rutas según sea necesario
 		]
-		
-	var dibujos_utilizados = []
+	var carta_aleatoria
 	var cartas_utilizadas = []
 	# Bucle seria: 
 	# Paso 1 elige textura
@@ -46,35 +50,21 @@ func _asignar_imagenes():
 		# Genera un índice aleatorio para seleccionar una textura de la lista
 		# La función randi_range(min, max) genera un número aleatorio dentro del rango inclusivo entre min y max. 
 		
-		var textura_aleatorio = randi_range(0,rutas_texturas.size()-1)
-		print (textura_aleatorio) # TRAZA
-		dibujos_utilizados.append(0) #Es la primera
-		
 		for i in range(get_child_count()):
-			var carta_aleatoria = randi_range(0,get_child_count()-1)
-			print (carta_aleatoria) # TRAZA
+			if i == 0:
+				carta_aleatoria = randi_range(0,get_child_count()-1)
+			else:
+				#sigue sacando numeros aleatorios distintos del vector carta utilizada
+				while true:
+					carta_aleatoria = randi_range(0,get_child_count()-1)
+					if carta_aleatoria not in cartas_utilizadas:
+						break
+			cartas_utilizadas.append(carta_aleatoria) #Es la primera
 			
-			if i % 2 == 0:
-				textura_aleatorio = randi_range(0,rutas_texturas.size()-1)
-				print (textura_aleatorio) # TRAZA
-			
-			var nueva_textura = load(rutas_texturas[textura_aleatorio])
-			
+			var nueva_textura = load(rutas_texturas[i])
 			var carta_instance
 			var sprite_carta
-			if i == 0:
-				cartas_utilizadas.append(i) #Es la primera
-				carta_instance = get_child(i)
-				sprite_carta = carta_instance.get_node("Frontal")
-				sprite_carta.texture = nueva_textura
-			else:
-				for j in cartas_utilizadas.size():
-					if cartas_utilizadas[j] == carta_aleatoria:
-						print ("Carta duplicada")
-					else:
-						print ("Carta vacia")
-						carta_instance = get_child(i)
-						sprite_carta = carta_instance.get_node("Frontal")
-						sprite_carta.texture = nueva_textura
-		
+			carta_instance = get_child(carta_aleatoria)
+			sprite_carta = carta_instance.get_node("Frontal")
+			sprite_carta.texture = nueva_textura
 	else: print ("Error, cartas impares")
