@@ -6,6 +6,7 @@ extends Node2D
 @onready var frontal: Sprite2D = $Frontal
 @onready var dorso: Sprite2D = $DorsoGodot
 var boca_abajo : bool = true
+var idImagen : int
 
 func _ready():
 	frontal.scale.x=0
